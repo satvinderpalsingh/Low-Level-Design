@@ -3,10 +3,11 @@ package designPatterns.observerDesignPattern.observable;
 import designPatterns.observerDesignPattern.observer.ProductStockCommObserverInterface;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class IphoneStockObservable implements ProductStockObservableInterface {
-    public int stock=0;
-    private final ArrayList<ProductStockCommObserverInterface> observers=new ArrayList<>();
+    private int stock = 0;
+    private final List<ProductStockCommObserverInterface> observers = new ArrayList<>();
 
     @Override
     public void addObserver(ProductStockCommObserverInterface observer) {
@@ -27,10 +28,11 @@ public class IphoneStockObservable implements ProductStockObservableInterface {
 
     @Override
     public void setStock(int stock) {
-        if (this.stock==0){
+        boolean wasOutOfStock = this.stock == 0;
+        this.stock += stock;
+        if (wasOutOfStock && this.stock > 0) {
             notifyObservers();
         }
-        this.stock+= stock;
     }
 
     @Override
