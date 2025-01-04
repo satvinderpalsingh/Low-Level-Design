@@ -1,7 +1,6 @@
 package snakeLadderLLD;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class Game {
     private Dice dice;
